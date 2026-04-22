@@ -10,8 +10,8 @@ const PET_SCALE := 4.0
 const DRAG_COOLDOWN := 0.8
 
 @export_group("Behavior Weights")
-@export_range(0, 100, 1) var sleep_weight := 0
-@export_range(0, 100, 1) var wander_weight := 100
+@export_range(0, 100, 1) var sleep_weight := 100
+@export_range(0, 100, 1) var wander_weight := 0
 @export_range(0, 100, 1) var attack_weight := 0
 @export_range(0, 100, 1) var figure_eight_weight := 0
 
