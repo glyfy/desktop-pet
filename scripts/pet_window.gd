@@ -55,7 +55,8 @@ func drag_mouse_with_pet(direction: Vector2) -> void:
 	var carry_offset := Vector2(window.size) * 0.35
 	var screen_target := window_center() + direction * carry_offset.x
 	var local_target := screen_target - Vector2(window.position)
-	Input.warp_mouse(local_target)
+	DisplayServer.window_move_to_foreground(window.get_window_id())
+	DisplayServer.warp_mouse(Vector2i(local_target.round()))
 
 
 func figure_eight_anchor_from_current_position(horizontal_radius: float, vertical_radius: float) -> Vector2:

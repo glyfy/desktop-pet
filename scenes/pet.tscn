@@ -1,0 +1,17 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/desktop_pet.gd" id="1_pet"]
+[ext_resource type="Texture2D" path="res://assets/olive-sleep.png" id="2_sleep"]
+[ext_resource type="Texture2D" path="res://assets/olive-wander.png" id="3_wander"]
+[ext_resource type="Texture2D" path="res://assets/olive-attack.png" id="4_attack"]
+[ext_resource type="Texture2D" path="res://assets/olive-figure8.png" id="5_figure8"]
+
+[node name="PetRoot" type="Node2D"]
+script = ExtResource("1_pet")
+sleep_texture = ExtResource("2_sleep")
+wander_texture = ExtResource("3_wander")
+attack_texture = ExtResource("4_attack")
+figure_eight_texture = ExtResource("5_figure8")
+
+[node name="PetSprite" type="Sprite2D" parent="."]
+position = Vector2(72, 72)

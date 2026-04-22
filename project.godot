@@ -10,20 +10,20 @@ config_version=5
 
 [application]
 
-config/name="Desktop Pet"
+config/name="Birthday Present"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 0)
-config/icon="res://icon.svg"
+config/icon="res://assets/olive-app-cover.png"
 
 [display]
 
-window/size/viewport_width=144
-window/size/viewport_height=144
-window/size/resizable=false
-window/size/borderless=true
-window/size/always_on_top=true
-window/size/transparent=true
+window/size/viewport_width=440
+window/size/viewport_height=560
+window/size/resizable=true
+window/size/borderless=false
+window/size/always_on_top=false
+window/size/transparent=false
 window/per_pixel_transparency/allowed=true
 
 [physics]
@@ -33,4 +33,5 @@ window/per_pixel_transparency/allowed=true
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_etc2_astc=true
 viewport/transparent_background=true

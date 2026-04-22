@@ -26,9 +26,9 @@ const ATTACK_TACKLE_DISTANCE := 220.0
 const ATTACK_RECOVERY_TIME := 0.8
 const ATTACK_STOP_DISTANCE := 10.0
 
-const FIGURE_EIGHT_HORIZONTAL_RADIUS := 1000.0
-const FIGURE_EIGHT_VERTICAL_RADIUS := 1000.0
-const FIGURE_EIGHT_SPEED := 200
+const FIGURE_EIGHT_HORIZONTAL_RADIUS := 500.0
+const FIGURE_EIGHT_VERTICAL_RADIUS := 500.0
+const FIGURE_EIGHT_SPEED := 50
 
 var window_helper
 var visuals
@@ -52,6 +52,7 @@ var tackle_target := Vector2.ZERO
 
 var figure_eight_anchor := Vector2.ZERO
 var figure_eight_elapsed := 0.0
+var started := false
 
 
 func setup(helper, pet_visuals, config: Dictionary) -> void:
@@ -64,8 +65,21 @@ func setup(helper, pet_visuals, config: Dictionary) -> void:
 
 
 func start() -> void:
+	started = true
 	window_helper.move_to_corner()
 	_enter_behavior(_choose_next_behavior(StringName()))
+
+
+func stop() -> void:
+	started = false
+
+
+func update_weights(weights: Dictionary) -> void:
+	behavior_weights = weights.duplicate()
+
+
+func update_durations(durations: Dictionary) -> void:
+	behavior_durations = durations.duplicate()
 
 
 func on_drag_started() -> void:
@@ -74,6 +88,9 @@ func on_drag_started() -> void:
 
 
 func process(delta: float) -> void:
+	if not started:
+		return
+
 	if drag_pause_timer > 0.0:
 		drag_pause_timer = maxf(drag_pause_timer - delta, 0.0)
 		return

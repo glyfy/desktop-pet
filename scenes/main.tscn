@@ -1,17 +1,280 @@
-[gd_scene format=3 uid="uid://jcthr6q7jwnb"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" uid="uid://ccw0h7gpeymam" path="res://scripts/desktop_pet.gd" id="1_y8n4l"]
-[ext_resource type="Texture2D" uid="uid://bv20m762ioht4" path="res://assets/olive-sleep.png" id="2_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://cneokoat4la8s" path="res://assets/olive-attack.png" id="3_jyhfs"]
-[ext_resource type="Texture2D" uid="uid://ncl6m3dckgyi" path="res://assets/olive-wander.png" id="3_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://cevf3t0a1cqhc" path="res://assets/olive-figure8.png" id="4_jyhfs"]
+[ext_resource type="Script" path="res://scripts/app.gd" id="1_app"]
+[ext_resource type="PackedScene" path="res://scenes/pet.tscn" id="2_pet"]
 
-[node name="Main" type="Node2D" unique_id=1519118504]
-script = ExtResource("1_y8n4l")
-sleep_texture = ExtResource("2_tbgi4")
-wander_texture = ExtResource("3_tbgi4")
-attack_texture = ExtResource("3_jyhfs")
-figure_eight_texture = ExtResource("4_jyhfs")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.956863, 0.933333, 0.890196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.305882, 0.235294, 0.137255, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.12)
+shadow_size = 10
 
-[node name="PetSprite" type="Sprite2D" parent="." unique_id=1259772779]
-position = Vector2(72, 72)
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_app")
+
+[node name="PetWindow" type="Window" parent="."]
+title = "Birthday Present"
+initial_position = 0
+visible = false
+transient = false
+exclusive = false
+unresizable = true
+borderless = true
+always_on_top = true
+transparent = true
+popup_window = false
+size = Vector2i(144, 144)
+
+[node name="Pet" parent="PetWindow" instance=ExtResource("2_pet")]
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.972549, 0.956863, 0.92549, 1)
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 22
+
+[node name="Panel" type="PanelContainer" parent="Margin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Content" type="VBoxContainer" parent="Margin/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Header" type="VBoxContainer" parent="Margin/Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="Margin/Panel/Content/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 34
+text = "Birthday Present"
+
+[node name="Subtitle" type="Label" parent="Margin/Panel/Content/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "Launch the pet, then tune how often each behavior shows up."
+autowrap_mode = 3
+
+[node name="Status" type="PanelContainer" parent="Margin/Panel/Content"]
+layout_mode = 2
+
+[node name="StatusRow" type="HBoxContainer" parent="Margin/Panel/Content/Status"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StatusLabel" type="Label" parent="Margin/Panel/Content/Status/StatusRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "Status"
+
+[node name="StatusValue" type="Label" parent="Margin/Panel/Content/Status/StatusRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Inactive"
+
+[node name="Buttons" type="HBoxContainer" parent="Margin/Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ActivateButton" type="Button" parent="Margin/Panel/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "Open Pet"
+
+[node name="DeactivateButton" type="Button" parent="Margin/Panel/Content/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "Hide Pet"
+
+[node name="ResetButton" type="Button" parent="Margin/Panel/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 17
+text = "Reset Frequencies"
+
+[node name="WeightsTitle" type="Label" parent="Margin/Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 24
+text = "Behavior Frequency"
+
+[node name="WeightsHelp" type="Label" parent="Margin/Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 16
+text = "These sliders are live weights. The percentages show the effective mix without changing the other sliders."
+autowrap_mode = 3
+
+[node name="TotalRow" type="HBoxContainer" parent="Margin/Panel/Content"]
+layout_mode = 2
+
+[node name="TotalLabel" type="Label" parent="Margin/Panel/Content/TotalRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 17
+text = "Effective Total"
+
+[node name="TotalValue" type="Label" parent="Margin/Panel/Content/TotalRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 17
+text = "100%"
+
+[node name="WeightsList" type="VBoxContainer" parent="Margin/Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SleepRow" type="VBoxContainer" parent="Margin/Panel/Content/WeightsList"]
+layout_mode = 2
+
+[node name="SleepHeader" type="HBoxContainer" parent="Margin/Panel/Content/WeightsList/SleepRow"]
+layout_mode = 2
+
+[node name="SleepLabel" type="Label" parent="Margin/Panel/Content/WeightsList/SleepRow/SleepHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "Sleep"
+
+[node name="SleepValue" type="Label" parent="Margin/Panel/Content/WeightsList/SleepRow/SleepHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "25"
+
+[node name="SleepSlider" type="HSlider" parent="Margin/Panel/Content/WeightsList/SleepRow"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 100.0
+step = 1.0
+value = 25.0
+
+[node name="WanderRow" type="VBoxContainer" parent="Margin/Panel/Content/WeightsList"]
+layout_mode = 2
+
+[node name="WanderHeader" type="HBoxContainer" parent="Margin/Panel/Content/WeightsList/WanderRow"]
+layout_mode = 2
+
+[node name="WanderLabel" type="Label" parent="Margin/Panel/Content/WeightsList/WanderRow/WanderHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "Wander"
+
+[node name="WanderValue" type="Label" parent="Margin/Panel/Content/WeightsList/WanderRow/WanderHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "25"
+
+[node name="WanderSlider" type="HSlider" parent="Margin/Panel/Content/WeightsList/WanderRow"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 100.0
+step = 1.0
+value = 25.0
+
+[node name="AttackRow" type="VBoxContainer" parent="Margin/Panel/Content/WeightsList"]
+layout_mode = 2
+
+[node name="AttackHeader" type="HBoxContainer" parent="Margin/Panel/Content/WeightsList/AttackRow"]
+layout_mode = 2
+
+[node name="AttackLabel" type="Label" parent="Margin/Panel/Content/WeightsList/AttackRow/AttackHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "Attack Mouse"
+
+[node name="AttackValue" type="Label" parent="Margin/Panel/Content/WeightsList/AttackRow/AttackHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "25"
+
+[node name="AttackSlider" type="HSlider" parent="Margin/Panel/Content/WeightsList/AttackRow"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 100.0
+step = 1.0
+value = 25.0
+
+[node name="FigureEightRow" type="VBoxContainer" parent="Margin/Panel/Content/WeightsList"]
+layout_mode = 2
+
+[node name="FigureEightHeader" type="HBoxContainer" parent="Margin/Panel/Content/WeightsList/FigureEightRow"]
+layout_mode = 2
+
+[node name="FigureEightLabel" type="Label" parent="Margin/Panel/Content/WeightsList/FigureEightRow/FigureEightHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "Figure Eight"
+
+[node name="FigureEightValue" type="Label" parent="Margin/Panel/Content/WeightsList/FigureEightRow/FigureEightHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+theme_override_font_sizes/font_size = 18
+text = "25"
+
+[node name="FigureEightSlider" type="HSlider" parent="Margin/Panel/Content/WeightsList/FigureEightRow"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 100.0
+step = 1.0
+value = 25.0
