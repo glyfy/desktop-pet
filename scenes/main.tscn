@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://jcthr6q7jwnb"]
+
+[ext_resource type="Script" uid="uid://ccw0h7gpeymam" path="res://scripts/desktop_pet.gd" id="1_y8n4l"]
+[ext_resource type="Texture2D" uid="uid://c6171d6pfr0y2" path="res://assets/olive.png" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://cneokoat4la8s" path="res://assets/olive-attack.png" id="3_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://ncl6m3dckgyi" path="res://assets/olive-wander.png" id="3_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://cevf3t0a1cqhc" path="res://assets/olive-figure8.png" id="4_jyhfs"]
+
+[node name="Main" type="Node2D" unique_id=1519118504]
+script = ExtResource("1_y8n4l")
+sleep_texture = ExtResource("2_0wfyh")
+wander_texture = ExtResource("3_tbgi4")
+attack_texture = ExtResource("3_jyhfs")
+figure_eight_texture = ExtResource("4_jyhfs")
+
+[node name="PetSprite" type="Sprite2D" parent="." unique_id=1259772779]
+position = Vector2(72, 72)

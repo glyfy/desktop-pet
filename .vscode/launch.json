@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Desktop Pet",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "\"${input:godotExecutable}\" --path \"${workspaceFolder}\""
+    }
+  ],
+  "inputs": [
+    {
+      "id": "godotExecutable",
+      "type": "promptString",
+      "description": "Path to the Godot executable used by VS Code",
+      "default": "/Users/glenlim/Downloads/Godot.app/Contents/MacOS/Godot"
+    }
+  ]
+}

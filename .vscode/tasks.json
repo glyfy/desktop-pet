@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Desktop Pet",
+      "type": "process",
+      "command": "${input:godotExecutable}",
+      "args": [
+        "--path",
+        "${workspaceFolder}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "godotExecutable",
+      "type": "promptString",
+      "description": "Path to the Godot executable used by VS Code",
+      "default": "/Users/glenlim/Downloads/Godot.app/Contents/MacOS/Godot"
+    }
+  ]
+}
